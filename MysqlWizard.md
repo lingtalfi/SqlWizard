@@ -17,17 +17,17 @@ Summary
 
 - [Howto](#howto)
 - [Methods](#methods)
-    - [getDatabases](#get-databases)
-    - [getTables](#get-tables)
-    - [getAutoIncrementedField](#get-auto-incremented-field)
-    - [getColumnDataTypes](#get-column-data-types)
-    - [getColumnDefaultValues](#get-column-default-values)
-    - [getColumnNames](#get-column-names)
-    - [getColumnNullabilities](#get-column-nullabilities)
-    - [getUniqueIndexes](#get-unique-indexes)
-    - [getForeignKeysInfo](#get-foreign-keys-info)
-    - [getPrimaryKey](#get-primary-key)
-    - [getRic](#get-ric)
+    - [getDatabases](#getdatabases)
+    - [getTables](#gettables)
+    - [getAutoIncrementedField](#getautoincrementedfield)
+    - [getColumnDataTypes](#getcolumndatatypes)
+    - [getColumnDefaultValues](#getcolumndefaultvalues)
+    - [getColumnNames](#getcolumnnames)
+    - [getColumnNullabilities](#getcolumnnullabilities)
+    - [getUniqueIndexes](#getuniqueindexes)
+    - [getForeignKeysInfo](#getforeignkeysinfo)
+    - [getPrimaryKey](#getprimarykey)
+    - [getRic](#getric)
 - [Definitions](#definitions)
 
 
@@ -247,7 +247,7 @@ getAutoIncrementedField ( string $table ): string
 
 - **table**
 
-    The name of the table to scan. It uses the [fullTable notation](#full-table-notation).
+    The name of the table to scan. It uses the [fullTable notation](#fulltable-notation).
 
 
 ### Return Values
@@ -285,7 +285,7 @@ getColumnDataTypes ( string $table, bool $precision = false ): array
 
 - **table**
 
-    The name of the table to scan. It uses the [fullTable notation](#full-table-notation).
+    The name of the table to scan. It uses the [fullTable notation](#fulltable-notation).
 
 
 ### Return Values
@@ -357,7 +357,7 @@ getColumnDefaultValues ( string $table ): array
 
 - **table**
 
-    The name of the table to scan. It uses the [fullTable notation](#full-table-notation).
+    The name of the table to scan. It uses the [fullTable notation](#fulltable-notation).
 
 
 ### Return Values
@@ -414,7 +414,7 @@ getColumnNames ( string $table ): array
 
 - **table**
 
-    The name of the table to scan. It uses the [fullTable notation](#full-table-notation).
+    The name of the table to scan. It uses the [fullTable notation](#fulltable-notation).
 
 
 ### Return Values
@@ -472,7 +472,7 @@ getColumnNullabilities ( string $table ): array
 
 - **table**
 
-    The name of the table to scan. It uses the [fullTable notation](#full-table-notation).
+    The name of the table to scan. It uses the [fullTable notation](#fulltable-notation).
 
 
 ### Return Values
@@ -526,7 +526,7 @@ getUniqueIndexes ( string $table ): array
 
 - **table**
 
-    The name of the table to scan. It uses the [fullTable notation](#full-table-notation).
+    The name of the table to scan. It uses the [fullTable notation](#fulltable-notation).
 
 
 ### Return Values
@@ -587,7 +587,7 @@ getForeignKeysInfo ( string $table ): array
 
 - **table**
 
-    The name of the table to scan. It uses the [fullTable notation](#full-table-notation).
+    The name of the table to scan. It uses the [fullTable notation](#fulltable-notation).
 
 
 ### Return Values
@@ -661,7 +661,7 @@ getPrimaryKey ( string $table ): array
 
 - **table**
 
-    The name of the table to scan. It uses the [fullTable notation](#full-table-notation).
+    The name of the table to scan. It uses the [fullTable notation](#fulltable-notation).
 
 
 ### Return Values
@@ -716,7 +716,7 @@ getRic ( string $table ): array
 
 - **table**
 
-    The name of the table to scan. It uses the [fullTable notation](#full-table-notation).
+    The name of the table to scan. It uses the [fullTable notation](#fulltable-notation).
 
 
 ### Return Values
@@ -768,7 +768,7 @@ getReferencedKeysInfo ( string $table ): array
 
 - **table**
 
-    The name of the table to scan. It uses the [fullTable notation](#full-table-notation).
+    The name of the table to scan. It uses the [fullTable notation](#fulltable-notation).
 
 
 ### Return Values
