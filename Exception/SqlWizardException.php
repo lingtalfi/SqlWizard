@@ -1,6 +1,6 @@
 <?php
 
-namespace SqlWizard\Exception;
+namespace Ling\SqlWizard\Exception;
 
 
 class SqlWizardException extends \Exception

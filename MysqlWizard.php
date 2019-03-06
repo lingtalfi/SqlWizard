@@ -1,11 +1,11 @@
 <?php
 
 
-namespace SqlWizard;
+namespace Ling\SqlWizard;
 
 
-use SimplePdoWrapper\Exception\InvalidTableNameException;
-use SqlWizard\Exception\NoConnectionException;
+use Ling\SimplePdoWrapper\Exception\InvalidTableNameException;
+use Ling\SqlWizard\Exception\NoConnectionException;
 
 /**
  * The MysqlWizard class is a helper class to work with mysql databases.
