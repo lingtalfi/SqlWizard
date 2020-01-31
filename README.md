@@ -1,6 +1,6 @@
 SqlWizard
 =========
-2019-02-04
+2019-02-04 -> 2020-01-31
 
 
 
@@ -35,7 +35,7 @@ Summary
 
 - [SqlWizard api](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard.md) (generated with [DocTools](https://github.com/lingtalfi/DocTools))
 - Pages
-    - [MysqlStructureReader example](https://github.com/lingtalfi/SqlWizard/blob/master/doc/pages/mysql-structure-reader-examples.md)
+    - [MysqlStructureReader example](https://github.com/lingtalfi/SqlWizard/blob/master/doc/pages/mysql-structure-reader-example.md)
 
 
 
@@ -43,6 +43,10 @@ Summary
 History Log
 ------------------
 
+- 1.2.1 -- 2020-01-31
+
+    - fix link in README.md
+    
 - 1.2.0 -- 2020-01-31
 
     - add MysqlStructureReader util
