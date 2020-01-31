@@ -43,6 +43,10 @@ Summary
 History Log
 ------------------
 
+- 1.2.2 -- 2020-01-31
+
+    - fix MysqlStructureReader->readContent's docTool definition in the comment
+    
 - 1.2.1 -- 2020-01-31
 
     - fix link in README.md

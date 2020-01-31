@@ -38,7 +38,7 @@ class MysqlStructureReader
     }
 
     /**
-     * Reads the given content and returns an array containing **table info items**, each of which having the following structure:
+     * Reads the given content and returns an array containing **table info items**, each of which having the following structure.
      *
      * - db: string, the name of the database
      * - table: string, the name of the table

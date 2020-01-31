@@ -30,7 +30,7 @@ Table of contents
     - [MysqlSerializeTool::unserialize](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Tool/MysqlSerializeTool/unserialize.md) &ndash; Un-serializes the $keys found in the given array in place.
 - [MysqlStructureReader](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader.md) &ndash; The MysqlStructureReader class.
     - [MysqlStructureReader::readFile](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/readFile.md) &ndash; Same as the readContent method, but takes a file as argument.
-    - [MysqlStructureReader::readContent](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/readContent.md) &ndash; - uind: array, the unique indexes.
+    - [MysqlStructureReader::readContent](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/readContent.md) &ndash; Reads the given content and returns an array containing **table info items**, each of which having the following structure.
 
 
 Dependencies

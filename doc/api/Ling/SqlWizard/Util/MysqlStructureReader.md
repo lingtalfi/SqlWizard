@@ -53,7 +53,7 @@ Methods
 ==============
 
 - [MysqlStructureReader::readFile](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/readFile.md) &ndash; Same as the readContent method, but takes a file as argument.
-- [MysqlStructureReader::readContent](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/readContent.md) &ndash; - uind: array, the unique indexes.
+- [MysqlStructureReader::readContent](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/readContent.md) &ndash; Reads the given content and returns an array containing **table info items**, each of which having the following structure.
 - [MysqlStructureReader::getDatabaseAndTableFromLine](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/getDatabaseAndTableFromLine.md) &ndash; Returns an array containing the database and the table name from the given line.
 - [MysqlStructureReader::extractColumn](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/extractColumn.md) &ndash; or throws an exception if it doesn't find one.
 - [MysqlStructureReader::extractColumns](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/extractColumns.md) &ndash; or throws an exception if it doesn't find any.
