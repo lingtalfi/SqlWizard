@@ -33,13 +33,20 @@ Or just download it and place it where you want otherwise.
 Summary
 =======
 
-- [MysqlWizard](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.md)
+- [SqlWizard api](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard.md) (generated with [DocTools](https://github.com/lingtalfi/DocTools))
+- Pages
+    - [MysqlStructureReader example](https://github.com/lingtalfi/SqlWizard/blob/master/doc/pages/mysql-structure-reader-examples.md)
+
 
 
 
 History Log
 ------------------
 
+- 1.2.0 -- 2020-01-31
+
+    - add MysqlStructureReader util
+    
 - 1.1.0 -- 2019-07-23
 
     - add MysqlSerializeTool
