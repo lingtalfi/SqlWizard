@@ -1,6 +1,6 @@
 SqlWizard
 =========
-2019-02-04 -> 2020-01-31
+2019-02-04 -> 2020-02-03
 
 
 
@@ -43,6 +43,10 @@ Summary
 History Log
 ------------------
 
+- 1.3.0 -- 2020-02-03
+
+    - add MysqlStructureReader::readerArrayToTableInfo method
+    
 - 1.2.2 -- 2020-01-31
 
     - fix MysqlStructureReader->readContent's docTool definition in the comment

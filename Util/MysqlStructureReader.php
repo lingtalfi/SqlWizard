@@ -4,6 +4,8 @@
 namespace Ling\SqlWizard\Util;
 
 
+use Ling\SimplePdoWrapper\Util\RicHelper;
+use Ling\SimplePdoWrapper\Util\SimpleTypeHelper;
 use Ling\SqlWizard\Exception\SqlWizardException;
 
 /**
@@ -23,6 +25,52 @@ use Ling\SqlWizard\Exception\SqlWizardException;
  */
 class MysqlStructureReader
 {
+
+
+    /**
+     * This is an adapter method that takes the output of the MysqlStructureReader->readContent
+     * method and returns a tableInfo array, which structure is defined in the @page(Light_DatabaseInfo->getTableInfo) method.
+     *
+     *
+     * @param array $readerArray
+     * @param string|null $defaultDb
+     * @return array
+     */
+    public static function readerArrayToTableInfo(array $readerArray, string $defaultDb = null): array
+    {
+
+        $aik = $readerArray['ai'] ?? false;
+
+        $ric = RicHelper::getRicByPkAndColumnsAndUniqueIndexes($readerArray['pk'], $readerArray['columnNames'], $readerArray['uind'], false);
+        $strictRic = RicHelper::getRicByPkAndColumnsAndUniqueIndexes($readerArray['pk'], $readerArray['columnNames'], $readerArray['uind'], true);
+
+        $db = $readerArray['db'];
+        if (null === $db) {
+            $db = $defaultDb;
+        }
+
+        $fks = $readerArray['fkeys'];
+        foreach ($fks as $col => $fk) {
+            if (null === $fk[0]) {
+                $fk[0] = $defaultDb;
+            }
+            $fks[$col] = $fk;
+        }
+
+
+        return [
+            "database" => $db,
+            "columns" => $readerArray['columnNames'],
+            "primary" => $readerArray['pk'],
+            "types" => $readerArray['columnTypes'],
+            "simpleTypes" => SimpleTypeHelper::getSimpleTypes($readerArray['columnTypes']),
+            "ric" => $ric,
+            "ricStrict" => $strictRic,
+            "autoIncrementedKey" => $aik,
+            "uniqueIndexes" => $readerArray['uind'],
+            "foreignKeysInfo" => $fks,
+        ];
+    }
 
 
     /**

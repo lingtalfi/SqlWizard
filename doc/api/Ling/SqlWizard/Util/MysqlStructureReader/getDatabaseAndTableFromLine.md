@@ -55,7 +55,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [MysqlStructureReader::getDatabaseAndTableFromLine](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlStructureReader.php#L180-L198)
+See the source code for method [MysqlStructureReader::getDatabaseAndTableFromLine](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlStructureReader.php#L228-L246)
 
 
 See Also

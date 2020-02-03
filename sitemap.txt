@@ -29,6 +29,7 @@ https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/M
 https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/getDatabaseAndTableFromLine.md
 https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/readContent.md
 https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/readFile.md
+https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/readerArrayToTableInfo.md
 https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader.md
 https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard.md
 https://github.com/lingtalfi/SqlWizard/blob/master/doc/pages/mysql-structure-reader-example.md

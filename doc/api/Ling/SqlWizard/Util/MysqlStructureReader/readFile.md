@@ -54,7 +54,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlStructureReader::readFile](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlStructureReader.php#L35-L38)
+See the source code for method [MysqlStructureReader::readFile](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlStructureReader.php#L83-L86)
 
 
 See Also
@@ -62,5 +62,5 @@ See Also
 
 The [MysqlStructureReader](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader.md) class.
 
-Next method: [readContent](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/readContent.md)<br>
+Previous method: [readerArrayToTableInfo](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/readerArrayToTableInfo.md)<br>Next method: [readContent](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/readContent.md)<br>
 
