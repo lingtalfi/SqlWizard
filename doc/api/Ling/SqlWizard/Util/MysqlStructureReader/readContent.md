@@ -23,7 +23,7 @@ public [MysqlStructureReader::readContent](https://github.com/lingtalfi/SqlWizar
 
 Reads the given content and returns an array containing **table info items**, each of which having the following structure.
 
-- db: string, the name of the database
+- db: string|null, the name of the database, or null if not specified
 - table: string, the name of the table
 - pk: array, the names of the columns of the primary key (or an empty array by default)
 - uind: array, the unique indexes. Each entry of the array is itself an array representing one index.
@@ -38,6 +38,10 @@ Reads the given content and returns an array containing **table info items**, ea
     the information in parenthesis if any (for instance int, or varchar(64), or char(1), etc...)
 - columnNullables: array, the array of column name => boolean (whether the column is nullable)
 - ai: string|null = null, the name of the auto-incremented column if any
+- referencedByTables: array of the tables defined in the given content that have a foreign key referencing this table.
+     It's an array of "rb" items, each of which having the following structure:
+     - 0: database, string or null
+     - 1: table
 
 
 
@@ -70,7 +74,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlStructureReader::readContent](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlStructureReader.php#L114-L211)
+See the source code for method [MysqlStructureReader::readContent](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlStructureReader.php#L154-L274)
 
 
 See Also

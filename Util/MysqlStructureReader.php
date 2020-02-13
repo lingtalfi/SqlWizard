@@ -4,6 +4,8 @@
 namespace Ling\SqlWizard\Util;
 
 
+use Ling\SimplePdoWrapper\SimplePdoWrapperInterface;
+use Ling\SimplePdoWrapper\Util\MysqlInfoUtil;
 use Ling\SimplePdoWrapper\Util\RicHelper;
 use Ling\SimplePdoWrapper\Util\SimpleTypeHelper;
 use Ling\SqlWizard\Exception\SqlWizardException;
@@ -28,17 +30,29 @@ class MysqlStructureReader
 
 
     /**
-     * This is an adapter method that takes the output of the MysqlStructureReader->readContent
-     * method and returns a tableInfo array, which structure is defined in the @page(Light_DatabaseInfo->getTableInfo) method.
+     * This is an adapter method that takes a **table info item** (see the output of
+     * the MysqlStructureReader->readContent method) and returns a tableInfo array,
+     * which structure is defined in the @page(Light_DatabaseInfo->getTableInfo) method.
+     *
+     * Important note: the hasItems property is not derived from the readerArray, but regenerated
+     * using the MysqlInfoUtil->getHasItems method.
+     * The reason is that I thought it would add too much complexity to this class if I wanted
+     * to implement this feature, sorry.
+     *
+     *
      *
      *
      * @param array $readerArray
+     * @param SimplePdoWrapperInterface $pdoWrapper
      * @param string|null $defaultDb
      * @return array
+     * @throws \Exception
      */
-    public static function readerArrayToTableInfo(array $readerArray, string $defaultDb = null): array
+    public static function readerArrayToTableInfo(array $readerArray, SimplePdoWrapperInterface $pdoWrapper, string $defaultDb = null): array
     {
+        $util = new MysqlInfoUtil($pdoWrapper);
 
+        $table = $readerArray['table'];
         $aik = $readerArray['ai'] ?? false;
 
         $ric = RicHelper::getRicByPkAndColumnsAndUniqueIndexes($readerArray['pk'], $readerArray['columnNames'], $readerArray['uind'], false);
@@ -47,6 +61,9 @@ class MysqlStructureReader
         $db = $readerArray['db'];
         if (null === $db) {
             $db = $defaultDb;
+            if (null === $db) {
+                $db = $util->getDatabase();
+            }
         }
 
         $fks = $readerArray['fkeys'];
@@ -55,6 +72,23 @@ class MysqlStructureReader
                 $fk[0] = $defaultDb;
             }
             $fks[$col] = $fk;
+        }
+
+
+        /**
+         * referenced by tables, we merge the ones found by the reader (search only in a given file) with the ones found
+         * by the mysqlInfoUtil (search in the whole actual database).
+         */
+        $rbTables = $readerArray['referencedByTables'];
+        $referencedByTables = $util->getReferencedByTables($table, [$db]);
+        foreach ($rbTables as $rbTable) {
+            if (null === $rbTable[0]) {
+                $rbTable[0] = $db;
+            }
+            $fullTable = $rbTable[0] . "." . $rbTable[1];
+            if(false === in_array($fullTable, $referencedByTables, true)){
+                $referencedByTables[] = $fullTable;
+            }
         }
 
 
@@ -69,6 +103,8 @@ class MysqlStructureReader
             "autoIncrementedKey" => $aik,
             "uniqueIndexes" => $readerArray['uind'],
             "foreignKeysInfo" => $fks,
+            "referencedByTables" => $referencedByTables,
+            "hasItems" => $util->getHasItems($table),
         ];
     }
 
@@ -88,7 +124,7 @@ class MysqlStructureReader
     /**
      * Reads the given content and returns an array containing **table info items**, each of which having the following structure.
      *
-     * - db: string, the name of the database
+     * - db: string|null, the name of the database, or null if not specified
      * - table: string, the name of the table
      * - pk: array, the names of the columns of the primary key (or an empty array by default)
      * - uind: array, the unique indexes. Each entry of the array is itself an array representing one index.
@@ -103,6 +139,10 @@ class MysqlStructureReader
      *     the information in parenthesis if any (for instance int, or varchar(64), or char(1), etc...)
      * - columnNullables: array, the array of column name => boolean (whether the column is nullable)
      * - ai: string|null = null, the name of the auto-incremented column if any
+     * - referencedByTables: array of the tables defined in the given content that have a foreign key referencing this table.
+     *      It's an array of "rb" items, each of which having the following structure:
+     *      - 0: database, string or null
+     *      - 1: table
      *
      *
      *
@@ -193,7 +233,7 @@ class MysqlStructureReader
                 }
 
 
-                $tables[] = [
+                $tables[$table] = [
                     "db" => $db,
                     "table" => $table,
                     "pk" => $primaryKey,
@@ -203,10 +243,33 @@ class MysqlStructureReader
                     "columnTypes" => $columnTypes,
                     "columnNullables" => $columnNulls,
                     "ai" => $ai,
+                    "referencedByTables" => [],
                 ];
 
             }
         }
+
+
+        //--------------------------------------------
+        // REFERENCED BY TABLES
+        //--------------------------------------------
+        foreach ($tables as $table => $tableInfo) {
+
+            $fkeys = $tableInfo['fkeys'];
+            foreach ($fKeys as $fKey) {
+                $fkTable = $fKey[1];
+                if (array_key_exists($fkTable, $tables)) {
+                    $tables[$fkTable]["referencedByTables"][] = [
+                        $tableInfo["db"],
+                        $table,
+                    ];
+                }
+            }
+            $tables[$table] = $tableInfo;
+
+        }
+
+
         return $tables;
     }
 
