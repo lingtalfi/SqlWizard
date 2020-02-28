@@ -4,7 +4,7 @@
 
 The MysqlStructureReader class
 ================
-2019-07-23 --> 2020-02-13
+2019-07-23 --> 2020-02-28
 
 
 
@@ -74,4 +74,4 @@ See the source code of [Ling\SqlWizard\Util\MysqlStructureReader](https://github
 
 SeeAlso
 ==============
-Previous class: [MysqlSerializeTool](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Tool/MysqlSerializeTool.md)<br>
+Previous class: [SqlWizardGeneralTool](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Tool/SqlWizardGeneralTool.md)<br>

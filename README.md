@@ -1,6 +1,6 @@
 SqlWizard
 =========
-2019-02-04 -> 2020-02-13
+2019-02-04 -> 2020-02-28
 
 
 
@@ -43,6 +43,10 @@ Summary
 History Log
 ------------------
 
+- 1.5.0 -- 2020-02-28
+
+    - add SqlWizardGeneralTool class
+    
 - 1.4.0 -- 2020-02-13
 
     - update MysqlStructureReader::readerArrayToTableInfo method, now returns the referencedByTables and hasItems properties
