@@ -1,6 +1,6 @@
 SqlWizard
 =========
-2019-02-04 -> 2020-02-28
+2019-02-04 -> 2020-06-09
 
 
 
@@ -43,6 +43,10 @@ Summary
 History Log
 ------------------
 
+- 1.6.0 -- 2020-06-09
+
+    - update MysqlStructureReader->readContent, now returns uindDetails, indexes, fkeyDetails and engine information 
+    
 - 1.5.0 -- 2020-02-28
 
     - add SqlWizardGeneralTool class
