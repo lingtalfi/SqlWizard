@@ -43,6 +43,10 @@ Summary
 History Log
 ------------------
 
+- 1.7.0 -- 2020-06-09
+
+    - add MysqlStructureReader->getCreateStatementsFromContent method
+    
 - 1.6.0 -- 2020-06-09
 
     - update MysqlStructureReader->readContent, now returns uindDetails, indexes, fkeyDetails and engine information 

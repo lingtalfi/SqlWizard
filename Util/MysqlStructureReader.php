@@ -212,7 +212,6 @@ class MysqlStructureReader
                     ]);
 
 
-
                     $db = null;
                     $table = null;
                     $primaryKey = null;
@@ -381,6 +380,32 @@ class MysqlStructureReader
         return $tables;
     }
 
+
+    /**
+     * Parse the given content and returns an array of tableName => createStatement.
+     * With:
+     *      - tableName: string, the table name.
+     *      - createStatement: string, the create statement for this table.
+     *
+     *
+     * @param string $content
+     * @return array
+     */
+    public function getCreateStatementsFromContent(string $content): array
+    {
+        $statements = [];
+
+        if (preg_match_all('!CREATE TABLE (.*);$!msU', $content, $matches)) {
+            foreach ($matches[0] as $match) {
+                if (preg_match('!([^(]*)\((.*)\)(.*)!s', $match, $blocks)) {
+                    $firstLine = $blocks[1];
+                    list($db, $table) = $this->getDatabaseAndTableFromLine($firstLine);
+                    $statements[$table] = $match;
+                }
+            }
+        }
+        return $statements;
+    }
 
     /**
      * Returns an array containing the database and the table name from the given line.

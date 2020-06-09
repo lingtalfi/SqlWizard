@@ -97,7 +97,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlStructureReader::readContent](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlStructureReader.php#L183-L382)
+See the source code for method [MysqlStructureReader::readContent](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlStructureReader.php#L183-L381)
 
 
 See Also
@@ -105,5 +105,5 @@ See Also
 
 The [MysqlStructureReader](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader.md) class.
 
-Previous method: [readFile](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/readFile.md)<br>Next method: [getDatabaseAndTableFromLine](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/getDatabaseAndTableFromLine.md)<br>
+Previous method: [readFile](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/readFile.md)<br>Next method: [getCreateStatementsFromContent](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlStructureReader/getCreateStatementsFromContent.md)<br>
 
