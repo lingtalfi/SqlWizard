@@ -43,6 +43,10 @@ Summary
 History Log
 ------------------
 
+- 1.8.1 -- 2020-06-11
+
+    - fix MysqlStructureReader->readContent uindDetails returning only the last index info
+    
 - 1.8.0 -- 2020-06-11
 
     - fix MysqlStructureReader->readContent and getCreateStatementsFromContent parsing double dash comments

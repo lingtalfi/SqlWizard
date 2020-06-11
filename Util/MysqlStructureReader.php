@@ -138,7 +138,7 @@ class MysqlStructureReader
      * - uind: array, the unique indexes. Each entry of the array is itself an array representing one index.
      *     Each index is an array of column names composing the index.
      * - uindDetails: array, the unique indexes details. Same structure as the **indexes** property. See below for more details.
-     * - indexes: array, the indexes details. The array has the following entries:
+     * - indexes: array, the indexes details. The array contains items, each of which has the following entries:
      *      - name: string, the name of the index
      *      - keys: an array of the index keys, each of which being an array with the following entries:
      *          - colName: string, the name of the index column
@@ -259,7 +259,7 @@ class MysqlStructureReader
                                 $indexes[] = $indexKey['colName'];
                             }
                             $uniqueIndexes[] = $indexes;
-                            $uniqueIndexesDetails = $indexInfo;
+                            $uniqueIndexesDetails[] = $indexInfo;
                         } elseif (0 === strpos($op, "INDEX")) {
                             $indexInfo = $this->extractIndexInfo($op);
                             $regularIndexes = $indexInfo;
