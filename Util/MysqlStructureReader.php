@@ -262,7 +262,7 @@ class MysqlStructureReader
                             $uniqueIndexesDetails[] = $indexInfo;
                         } elseif (0 === strpos($op, "INDEX")) {
                             $indexInfo = $this->extractIndexInfo($op);
-                            $regularIndexes = $indexInfo;
+                            $regularIndexes[] = $indexInfo;
                         } elseif (0 === strpos($op, "CONSTRAINT")) {
 
                             $p1 = explode('FOREIGN KEY', $op, 2);

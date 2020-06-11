@@ -43,6 +43,10 @@ Summary
 History Log
 ------------------
 
+- 1.8.2 -- 2020-06-11
+
+    - fix MysqlStructureReader->readContent indexes returning only the last index info
+    
 - 1.8.1 -- 2020-06-11
 
     - fix MysqlStructureReader->readContent uindDetails returning only the last index info
