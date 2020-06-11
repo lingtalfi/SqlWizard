@@ -26,4 +26,15 @@ class SqlWizardGeneralTool
         return null;
     }
 
+
+    /**
+     * Removes the double-dash comments from the given content, and returns the stripped content.
+     *
+     * @param string $content
+     * @return string
+     */
+    public static function removeDoubleDashComments(string $content): string
+    {
+        return preg_replace('!^--.*!m', '', $content);
+    }
 }

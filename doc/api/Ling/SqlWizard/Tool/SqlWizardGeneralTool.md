@@ -4,7 +4,7 @@
 
 The SqlWizardGeneralTool class
 ================
-2019-07-23 --> 2020-06-09
+2019-07-23 --> 2020-06-11
 
 
 
@@ -26,6 +26,7 @@ class <span class="pl-k">SqlWizardGeneralTool</span>  {
 
 - Methods
     - public static [getTablePrefix](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Tool/SqlWizardGeneralTool/getTablePrefix.md)(string $table) : string | null
+    - public static [removeDoubleDashComments](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Tool/SqlWizardGeneralTool/removeDoubleDashComments.md)(string $content) : string
 
 }
 
@@ -38,6 +39,7 @@ Methods
 ==============
 
 - [SqlWizardGeneralTool::getTablePrefix](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Tool/SqlWizardGeneralTool/getTablePrefix.md) &ndash; 
+- [SqlWizardGeneralTool::removeDoubleDashComments](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Tool/SqlWizardGeneralTool/removeDoubleDashComments.md) &ndash; Removes the double-dash comments from the given content, and returns the stripped content.
 
 
 

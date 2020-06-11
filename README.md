@@ -1,6 +1,6 @@
 SqlWizard
 =========
-2019-02-04 -> 2020-06-09
+2019-02-04 -> 2020-06-11
 
 
 
@@ -43,6 +43,10 @@ Summary
 History Log
 ------------------
 
+- 1.8.0 -- 2020-06-11
+
+    - fix MysqlStructureReader->readContent and getCreateStatementsFromContent parsing double dash comments
+    
 - 1.7.0 -- 2020-06-09
 
     - add MysqlStructureReader->getCreateStatementsFromContent method

@@ -11,6 +11,7 @@ use Ling\SimplePdoWrapper\Util\MysqlInfoUtil;
 use Ling\SimplePdoWrapper\Util\RicHelper;
 use Ling\SimplePdoWrapper\Util\SimpleTypeHelper;
 use Ling\SqlWizard\Exception\SqlWizardException;
+use Ling\SqlWizard\Tool\SqlWizardGeneralTool;
 
 /**
  * The MysqlStructureReader class.
@@ -182,6 +183,8 @@ class MysqlStructureReader
      */
     public function readContent(string $content): array
     {
+
+        $content = SqlWizardGeneralTool::removeDoubleDashComments($content);
 
         $tables = [];
 
@@ -393,6 +396,7 @@ class MysqlStructureReader
      */
     public function getCreateStatementsFromContent(string $content): array
     {
+        $content = SqlWizardGeneralTool::removeDoubleDashComments($content);
         $statements = [];
 
         if (preg_match_all('!CREATE TABLE (.*);$!msU', $content, $matches)) {
