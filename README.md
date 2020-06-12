@@ -1,6 +1,6 @@
 SqlWizard
 =========
-2019-02-04 -> 2020-06-11
+2019-02-04 -> 2020-06-12
 
 
 
@@ -43,6 +43,10 @@ Summary
 History Log
 ------------------
 
+- 1.9.0 -- 2020-06-12
+
+    - update MysqlStructureReader->readContent fkeyDetails to accept foreign keys with multiple columns and or referenced columns
+    
 - 1.8.2 -- 2020-06-11
 
     - fix MysqlStructureReader->readContent indexes returning only the last index info

@@ -150,13 +150,19 @@ class MysqlStructureReader
      *     - 0: the referenced database, or null if it was not specified
      *     - 1: the referenced table
      *     - 2: the referenced column
+     *
+     *      Note: this property is only useful if your foreign key is composed of one column and references one column.
+     *      If your foreign key is composed of multiple columns and/or references multiple columns, consider using
+     *      the fkeyDetails property instead.
+     *
+     *
      * - fkeyDetails: array, the array representing the foreign key details. It's an array of constraintName => fkInfo,
      *          with constraintName being the name of the foreign key constraint, and fkInfo being the following
      *          array:
-     *          - fk: the name of the foreign key column
+     *          - fks: array of foreign key columns
      *          - references: (array)
      *              - table: the referenced table
-     *              - column: the referenced column
+     *              - columns: array, the referenced columns
      *          - onDelete: null | string(RESTRICT | CASCADE | SET NULL | NO ACTION | SET DEFAULT) = null, the keyword associated with the ON DELETE option
      *          - onUpdate: null | string(RESTRICT | CASCADE | SET NULL | NO ACTION | SET DEFAULT) = null, the keyword associated with the ON UPDATE option
      *
@@ -277,27 +283,28 @@ class MysqlStructureReader
                                     list($fkLine, $rest) = $p2;
 
 
-                                    $fkName = $this->extractColumn($fkLine);
+                                    $fkNames = $this->extractColumns($fkLine);
+                                    $fkName = $fkNames[0];
+
                                     $references = $this->extractColumns($rest);
-                                    if (2 === count($references)) {
-                                        // adding database=null if it wasn't specified
-                                        array_unshift($references, null);
-                                    }
-                                    $fKeys[$fkName] = $references;
+                                    $referencedTable = array_shift($references);
+                                    $referencedColumns = $references;
+
+
+                                    $fKeys[$fkName] = [null, $referencedTable, $referencedColumns[0]];
 
 
                                     list($onDelete, $onUpdate) = $this->extractOnDeleteUpdateInfo($rest);
 
                                     $fkeyDetails[$constraintName] = [
-                                        'fk' => $fkName,
+                                        'fks' => $fkNames,
                                         'references' => [
-                                            "table" => $references[1],
-                                            "column" => $references[2],
+                                            "table" => $referencedTable,
+                                            "columns" => $referencedColumns,
                                         ],
                                         'onDelete' => $onDelete,
                                         'onUpdate' => $onUpdate,
                                     ];
-
 
                                 } else {
                                     throw new SqlWizardException("Invalid foreign key definition, missing the REFERENCES keyword.");

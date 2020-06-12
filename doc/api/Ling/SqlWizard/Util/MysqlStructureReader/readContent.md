@@ -41,13 +41,19 @@ Reads the given content and returns an array containing **table info items**, ea
     - 0: the referenced database, or null if it was not specified
     - 1: the referenced table
     - 2: the referenced column
+
+     Note: this property is only useful if your foreign key is composed of one column and references one column.
+     If your foreign key is composed of multiple columns and/or references multiple columns, consider using
+     the fkeyDetails property instead.
+
+
 - fkeyDetails: array, the array representing the foreign key details. It's an array of constraintName => fkInfo,
          with constraintName being the name of the foreign key constraint, and fkInfo being the following
          array:
-         - fk: the name of the foreign key column
+         - fks: array of foreign key columns
          - references: (array)
              - table: the referenced table
-             - column: the referenced column
+             - columns: array, the referenced columns
          - onDelete: null | string(RESTRICT | CASCADE | SET NULL | NO ACTION | SET DEFAULT) = null, the keyword associated with the ON DELETE option
          - onUpdate: null | string(RESTRICT | CASCADE | SET NULL | NO ACTION | SET DEFAULT) = null, the keyword associated with the ON UPDATE option
 
@@ -97,7 +103,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlStructureReader::readContent](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlStructureReader.php#L184-L384)
+See the source code for method [MysqlStructureReader::readContent](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlStructureReader.php#L190-L391)
 
 
 See Also
