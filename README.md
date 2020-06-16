@@ -1,6 +1,6 @@
 SqlWizard
 =========
-2019-02-04 -> 2020-06-12
+2019-02-04 -> 2020-06-16
 
 
 
@@ -43,6 +43,10 @@ Summary
 History Log
 ------------------
 
+- 1.10.0 -- 2020-06-16
+
+    - add SqlWizardGeneralTool::decorateStatement and statementDisableFkChecksUqChecks methods
+    
 - 1.9.0 -- 2020-06-12
 
     - update MysqlStructureReader->readContent fkeyDetails to accept foreign keys with multiple columns and or referenced columns
