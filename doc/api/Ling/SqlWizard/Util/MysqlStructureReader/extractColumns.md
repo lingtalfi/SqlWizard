@@ -55,7 +55,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlStructureReader::extractColumns](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlStructureReader.php#L480-L486)
+See the source code for method [MysqlStructureReader::extractColumns](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlStructureReader.php#L483-L489)
 
 
 See Also

@@ -49,7 +49,7 @@ Returns string | null.
 
 Source Code
 ===========
-See the source code for method [MysqlStructureReader::extractEngine](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlStructureReader.php#L629-L636)
+See the source code for method [MysqlStructureReader::extractEngine](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlStructureReader.php#L632-L639)
 
 
 See Also

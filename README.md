@@ -1,6 +1,6 @@
 SqlWizard
 =========
-2019-02-04 -> 2020-06-16
+2019-02-04 -> 2020-07-07
 
 
 
@@ -43,6 +43,10 @@ Summary
 History Log
 ------------------
 
+- 1.11.0 -- 2020-07-07
+
+    - update MysqlStructureReader->readFile, throws an exception if the file doesn't exist
+    
 - 1.10.0 -- 2020-06-16
 
     - add SqlWizardGeneralTool::decorateStatement and statementDisableFkChecksUqChecks methods

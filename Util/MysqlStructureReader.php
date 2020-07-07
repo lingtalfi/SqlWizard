@@ -125,6 +125,9 @@ class MysqlStructureReader
      */
     public function readFile(string $file): array
     {
+        if (false === file_exists($file)) {
+            throw new SqlWizardException("File not found: $file.");
+        }
         return $this->readContent(file_get_contents($file));
     }
 

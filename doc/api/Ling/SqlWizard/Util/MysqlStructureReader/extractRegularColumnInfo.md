@@ -61,7 +61,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlStructureReader::extractRegularColumnInfo](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlStructureReader.php#L561-L587)
+See the source code for method [MysqlStructureReader::extractRegularColumnInfo](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlStructureReader.php#L564-L590)
 
 
 See Also
