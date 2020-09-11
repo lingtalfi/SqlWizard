@@ -85,7 +85,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [MysqlSelectQueryParser::getQueryParts](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlSelectQueryParser.php#L166-L307)
+See the source code for method [MysqlSelectQueryParser::getQueryParts](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlSelectQueryParser.php#L82-L223)
 
 
 See Also
@@ -93,5 +93,5 @@ See Also
 
 The [MysqlSelectQueryParser](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser.md) class.
 
-Previous method: [getFieldsInfo](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/getFieldsInfo.md)<br>Next method: [replaceRefs](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/replaceRefs.md)<br>
+Next method: [getFieldsInfo](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/getFieldsInfo.md)<br>
 

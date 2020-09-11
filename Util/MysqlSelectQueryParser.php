@@ -38,90 +38,6 @@ class MysqlSelectQueryParser
 
 
     /**
-     * Returns an array containing some info about the given fields.
-     *
-     * It's an array of fieldItems representing the fields used in the query.
-     *
-     *
-     * Each fieldItem is an array containing:
-     * - column: string, the actual column from the table
-     * - tableAlias: string=null, the table alias used for this column, or null if no table alias was used
-     * - alias: string=null, the alias used for this column, or null if no alias was used
-     *
-     *
-     * Note: I didn't put the column as the key since with inner joins, two different tables could use the same column name
-     * which would lead to conflicts.
-     *
-     *
-     *
-     * Available options:
-     * - keyword: string=ref, see the class comment for more details
-     *
-     *
-     *
-     *
-     *
-     * @param string $fields
-     * @param array $options
-     * @return array
-     */
-    public static function getFieldsInfo(string $fields, array $options = []): array
-    {
-        $keyword = $options['keyword'] ?? 'ref';
-
-
-        /**
-         * first flatten the query to reduce complexity.
-         * Flatten means remove all the backtick escaped strings.
-         */
-        list($flatQuery, $references) = SqlWizardGeneralTool::flattenBackticks($fields, [
-            'keyword' => $keyword,
-        ]);
-
-
-        $fields = [];
-
-
-        $p = explode(',', $flatQuery);
-        $patternAs = '!\bas\b!i';
-        foreach ($p as $sField) {
-
-            $column = null;
-            $alias = null;
-            $tableAlias = null;
-
-
-            $p2 = preg_split($patternAs, $sField, 2);
-            if (2 === count($p2)) {
-                $alias = trim(trim($p2[1]), '`');
-                $sColumn = trim($p2[0]);
-            } else {
-                $sColumn = trim($p2[0]);
-            }
-            $p3 = explode('.', $sColumn, 2);
-            if (2 === count($p3)) {
-                $tableAlias = trim($p3[0]);
-                $column = trim($p3[1]);
-            } else {
-                $column = trim($p3[0]);
-            }
-
-
-            $realColumn = self::replaceRefs($column, $references);
-
-            $fields[] = [
-                'column' => $realColumn,
-                'tableAlias' => self::replaceRefs($tableAlias, $references),
-                'alias' => self::replaceRefs($alias, $references),
-            ];
-        }
-
-
-        return $fields;
-    }
-
-
-    /**
      * Returns an array containing the different parts of the given mysql query.
      *
      * The available parts are:
@@ -305,6 +221,154 @@ class MysqlSelectQueryParser
 
         return $arr;
     }
+
+
+    /**
+     * Returns an array containing some info about the given fields.
+     *
+     * It's an array of fieldItems representing the fields used in the query.
+     *
+     *
+     * Each fieldItem is an array containing:
+     * - column: string, the actual column from the table
+     * - tableAlias: string=null, the table alias used for this column, or null if no table alias was used
+     * - alias: string=null, the alias used for this column, or null if no alias was used
+     *
+     *
+     * Note: I didn't put the column as the key since with inner joins, two different tables could use the same column name
+     * which would lead to conflicts.
+     *
+     *
+     *
+     * Available options:
+     * - keyword: string=ref, see the class comment for more details
+     *
+     *
+     *
+     *
+     *
+     * @param string $fields
+     * @param array $options
+     * @return array
+     */
+    public static function getFieldsInfo(string $fields, array $options = []): array
+    {
+        $keyword = $options['keyword'] ?? 'ref';
+
+
+        /**
+         * first flatten the query to reduce complexity.
+         * Flatten means remove all the backtick escaped strings.
+         */
+        list($flatQuery, $references) = SqlWizardGeneralTool::flattenBackticks($fields, [
+            'keyword' => $keyword,
+        ]);
+
+
+        $fields = [];
+
+
+        $p = explode(',', $flatQuery);
+        $patternAs = '!\bas\b!i';
+        foreach ($p as $sField) {
+
+            $column = null;
+            $alias = null;
+            $tableAlias = null;
+
+
+            $p2 = preg_split($patternAs, $sField, 2);
+            if (2 === count($p2)) {
+                $alias = trim(trim($p2[1]), '`');
+                $sColumn = trim($p2[0]);
+            } else {
+                $sColumn = trim($p2[0]);
+            }
+            $p3 = explode('.', $sColumn, 2);
+            if (2 === count($p3)) {
+                $tableAlias = trim($p3[0]);
+                $column = trim($p3[1]);
+            } else {
+                $column = trim($p3[0]);
+            }
+
+
+            $realColumn = self::replaceRefs($column, $references);
+
+            $fields[] = [
+                'column' => $realColumn,
+                'tableAlias' => self::replaceRefs($tableAlias, $references),
+                'alias' => self::replaceRefs($alias, $references),
+            ];
+        }
+
+
+        return $fields;
+    }
+
+
+    /**
+     * Returns an array containing some info about the "from" clause:
+     *
+     * - 0: database; string=null, the database if specified, or null otherwise
+     * - 1: table; string, the actual table name used
+     * - 2: tableAlias; string=null, the table alias is defined, null otherwise
+     *
+     *
+     *
+     * Available options:
+     * - keyword: string=ref, see the class comment for more details
+     *
+     *
+     *
+     *
+     *
+     * @param string $from
+     * @param array $options
+     * @return array
+     */
+    public static function getFromInfo(string $from, array $options = []): array
+    {
+        $keyword = $options['keyword'] ?? 'ref';
+
+        list($flat, $references) = SqlWizardGeneralTool::flattenBackticks($from, [
+            'keyword' => $keyword,
+        ]);
+
+
+        $database = null;
+        $table = null;
+        $tableAlias = null;
+
+
+        $pattern = '!(\s+)!im';
+        $res = preg_split($pattern, $flat, 2);
+
+        if (2 === count($res)) {
+            list($tableString, $aliasString) = $res;
+            $res2 = preg_split($pattern, $aliasString, 2);
+            $tableAlias = trim(array_pop($res2));
+        } else {
+            $tableString = $res[0];
+        }
+
+        $tableString = trim($tableString);
+        $p = explode('.', $tableString, 2);
+        if (2 === count($p)) {
+            $database = $p[0];
+            $table = $p[1];
+        } else {
+            $table = $p[0];
+        }
+
+
+        return [
+            self::replaceRefs($database, $references),
+            self::replaceRefs($table, $references),
+            self::replaceRefs($tableAlias, $references),
+        ];
+    }
+
 
 
 

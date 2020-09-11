@@ -54,7 +54,7 @@ Returns string | null.
 
 Source Code
 ===========
-See the source code for method [MysqlSelectQueryParser::replaceRefs](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlSelectQueryParser.php#L323-L329)
+See the source code for method [MysqlSelectQueryParser::replaceRefs](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlSelectQueryParser.php#L387-L393)
 
 
 See Also
@@ -62,5 +62,5 @@ See Also
 
 The [MysqlSelectQueryParser](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser.md) class.
 
-Previous method: [getQueryParts](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/getQueryParts.md)<br>Next method: [replaceRefsInString](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/replaceRefsInString.md)<br>
+Previous method: [getFromInfo](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/getFromInfo.md)<br>Next method: [replaceRefsInString](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/replaceRefsInString.md)<br>
 

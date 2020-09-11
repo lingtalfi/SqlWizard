@@ -54,7 +54,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlSelectQueryParser::error](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlSelectQueryParser.php#L363-L366)
+See the source code for method [MysqlSelectQueryParser::error](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlSelectQueryParser.php#L427-L430)
 
 
 See Also

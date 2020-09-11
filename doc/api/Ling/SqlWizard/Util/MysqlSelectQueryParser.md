@@ -44,8 +44,9 @@ Class synopsis
 class <span class="pl-k">MysqlSelectQueryParser</span>  {
 
 - Methods
-    - public static [getFieldsInfo](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/getFieldsInfo.md)(string $fields, ?array $options = []) : array
     - public static [getQueryParts](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/getQueryParts.md)(string $query, ?array $options = []) : array
+    - public static [getFieldsInfo](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/getFieldsInfo.md)(string $fields, ?array $options = []) : array
+    - public static [getFromInfo](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/getFromInfo.md)(string $from, ?array $options = []) : array
     - private static [replaceRefs](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/replaceRefs.md)(string $expression, array $references) : string | null
     - private static [replaceRefsInString](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/replaceRefsInString.md)(string $expression, array $references) : string | null
     - private static [error](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/error.md)(string $msg) : void
@@ -60,8 +61,9 @@ class <span class="pl-k">MysqlSelectQueryParser</span>  {
 Methods
 ==============
 
-- [MysqlSelectQueryParser::getFieldsInfo](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/getFieldsInfo.md) &ndash; Returns an array containing some info about the given fields.
 - [MysqlSelectQueryParser::getQueryParts](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/getQueryParts.md) &ndash; Returns an array containing the different parts of the given mysql query.
+- [MysqlSelectQueryParser::getFieldsInfo](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/getFieldsInfo.md) &ndash; Returns an array containing some info about the given fields.
+- [MysqlSelectQueryParser::getFromInfo](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/getFromInfo.md) &ndash; 
 - [MysqlSelectQueryParser::replaceRefs](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/replaceRefs.md) &ndash; Returns the referenced version of the given expression if found in the given references array, or the original expression if not.
 - [MysqlSelectQueryParser::replaceRefsInString](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/replaceRefsInString.md) &ndash; Replaces all the references by their values in the given expression, and returns the result.
 - [MysqlSelectQueryParser::error](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Util/MysqlSelectQueryParser/error.md) &ndash; Throws an exception.
