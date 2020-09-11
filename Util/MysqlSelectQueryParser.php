@@ -38,6 +38,46 @@ class MysqlSelectQueryParser
 
 
     /**
+     *
+     * Takes a queryParts array, and recompiles it into an executable sql select query; returns the recompiled result.
+     *
+     * Note: the queryParts array is the outcome of the **getQueryParts** method of this class.
+     *
+     * @param array $queryParts
+     * @return string
+     */
+    public static function recompileParts(array $queryParts): string
+    {
+        $sep = PHP_EOL; // make sure this contains at least a whitespace, otherwise this might break.
+
+
+        $q = "select " . $queryParts['fields'] . $sep;
+        $q .= "from " . $queryParts['from'] . $sep;
+
+
+        if (null !== $queryParts['where']) {
+            $q .= "where " . $queryParts['where'] . $sep;
+        }
+        if (null !== $queryParts['joins']) {
+            $q .= " " . $queryParts['joins'] . $sep;
+        }
+        if (null !== $queryParts['groupBy']) {
+            $q .= "group by " . $queryParts['groupBy'] . $sep;
+        }
+        if (null !== $queryParts['having']) {
+            $q .= "having " . $queryParts['having'] . $sep;
+        }
+        if (null !== $queryParts['orderBy']) {
+            $q .= "order by " . $queryParts['orderBy'] . $sep;
+        }
+        if (null !== $queryParts['limit']) {
+            $q .= "limit " . $queryParts['limit'] . $sep;
+        }
+        return $q;
+    }
+
+
+    /**
      * Returns an array containing the different parts of the given mysql query.
      *
      * The available parts are:

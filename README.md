@@ -43,6 +43,10 @@ Summary
 History Log
 ------------------
 
+- 1.13.2 -- 2020-09-11
+
+    - add MysqlSelectQueryParser.recompileParts method
+    
 - 1.13.1 -- 2020-09-11
 
     - add MysqlSelectQueryParser.getFromInfo method
