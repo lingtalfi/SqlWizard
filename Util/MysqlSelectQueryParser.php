@@ -78,6 +78,43 @@ class MysqlSelectQueryParser
 
 
     /**
+     * Takes the given queryParts, and adds the "where" part to it, based on the given mode.
+     *
+     * If queryParts.where is null, then the "where" argument replaces that null value.
+     * If queryParts.where is defined, then the "where" argument is added to queryParts.where depending on the mode.
+     * - if mode=and (default), then the new where will look like this:
+     *      - newWhere: ($queryParts.where) and $where
+     * - if mode=or, then the new where will look like this:
+     *      - newWhere: ($queryParts.where) or $where
+     *
+     * Notice that for the "and" and "or" modes, an extra parenthesis pair is wrapped around the existing queryParts.where.
+     *
+     *
+     *
+     *
+     * @param array $queryParts
+     * @param string $where
+     * @param string $mode
+     */
+    public static function combineWhere(array &$queryParts, string $where, $mode = 'and')
+    {
+        if (null === $queryParts['where']) {
+            $queryParts['where'] = $where;
+        } else {
+            switch ($mode) {
+                case "and":
+                case "or":
+                    $queryParts['where'] = "(" . $queryParts['where'] . ") " . $mode . " " . $where;
+                    break;
+                default:
+                    self::error("Unknown mode \"$mode\".");
+                    break;
+            }
+        }
+    }
+
+
+    /**
      * Returns an array containing the different parts of the given mysql query.
      *
      * The available parts are:

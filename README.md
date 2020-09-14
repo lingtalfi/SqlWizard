@@ -1,6 +1,6 @@
 SqlWizard
 =========
-2019-02-04 -> 2020-09-11
+2019-02-04 -> 2020-09-14
 
 
 
@@ -43,6 +43,10 @@ Summary
 History Log
 ------------------
 
+- 1.13.3 -- 2020-09-14
+
+    - add MysqlSelectQueryParser.combineWhere method
+    
 - 1.13.2 -- 2020-09-11
 
     - add MysqlSelectQueryParser.recompileParts method

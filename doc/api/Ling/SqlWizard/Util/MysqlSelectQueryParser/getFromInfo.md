@@ -62,7 +62,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [MysqlSelectQueryParser::getFromInfo](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlSelectQueryParser.php#L370-L410)
+See the source code for method [MysqlSelectQueryParser::getFromInfo](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlSelectQueryParser.php#L407-L447)
 
 
 See Also

@@ -70,7 +70,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [MysqlSelectQueryParser::getFieldsInfo](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlSelectQueryParser.php#L294-L347)
+See the source code for method [MysqlSelectQueryParser::getFieldsInfo](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlSelectQueryParser.php#L331-L384)
 
 
 See Also

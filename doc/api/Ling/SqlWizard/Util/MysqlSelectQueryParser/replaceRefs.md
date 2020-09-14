@@ -54,7 +54,7 @@ Returns string | null.
 
 Source Code
 ===========
-See the source code for method [MysqlSelectQueryParser::replaceRefs](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlSelectQueryParser.php#L427-L433)
+See the source code for method [MysqlSelectQueryParser::replaceRefs](https://github.com/lingtalfi/SqlWizard/blob/master/Util/MysqlSelectQueryParser.php#L464-L470)
 
 
 See Also
