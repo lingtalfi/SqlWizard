@@ -62,6 +62,7 @@ class MysqlStructureReader
         $table = $readerArray['table'];
         $aik = $readerArray['ai'] ?? false;
 
+
         $ric = RicHelper::getRicByPkAndColumnsAndUniqueIndexes($readerArray['pk'], $readerArray['columnNames'], $readerArray['uind'], false);
         $strictRic = RicHelper::getRicByPkAndColumnsAndUniqueIndexes($readerArray['pk'], $readerArray['columnNames'], $readerArray['uind'], true);
 
@@ -102,6 +103,7 @@ class MysqlStructureReader
         return [
             "database" => $db,
             "columns" => $readerArray['columnNames'],
+            "nullables" => array_keys(array_filter($readerArray['columnNullables'])),
             "primary" => $readerArray['pk'],
             "types" => $readerArray['columnTypes'],
             "simpleTypes" => SimpleTypeHelper::getSimpleTypes($readerArray['columnTypes']),
