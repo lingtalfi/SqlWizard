@@ -43,6 +43,10 @@ Summary
 History Log
 ------------------
 
+- 1.13.5 -- 2020-12-04
+
+    - Add lpi-deps.byml file
+
 - 1.13.4 -- 2020-11-27
 
     - update MysqlStructureReader::readerArrayToTableInfo, now returns nullables property
