@@ -1,6 +1,6 @@
 SqlWizard
 =========
-2019-02-04 -> 2020-11-27
+2019-02-04 -> 2021-01-22
 
 
 
@@ -43,6 +43,10 @@ Summary
 History Log
 ------------------
 
+- 1.13.7 -- 2021-01-22
+
+    - add MysqlStructureReaderTool class
+  
 - 1.13.6 -- 2020-12-08
 
     - Fix lpi-deps not using natsort.
