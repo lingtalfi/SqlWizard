@@ -55,7 +55,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlWizard::getRic](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L545-L553)
+See the source code for method [MysqlWizard::getRic](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L544-L552)
 
 
 See Also

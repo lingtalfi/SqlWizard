@@ -48,6 +48,10 @@ Summary
 History Log
 ------------------
 
+- 1.13.14 -- 2021-06-28
+
+    - update MysqlWizard->getColumnDefaultApiValues now returns columns in natural order
+  
 - 1.13.13 -- 2021-06-28
 
     - fix MysqlStructureReader returning random db names

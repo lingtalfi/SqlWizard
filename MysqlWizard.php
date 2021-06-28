@@ -308,21 +308,18 @@ class MysqlWizard
 
         $types = $this->getColumnDataTypes($fullTable, true);
         $nullables = $this->getColumnNullabilities($fullTable);
-        foreach ($nullables as $k => $v) {
-            if (true === $v) {
-                $ret[$k] = null;
-            }
-        }
-
-
         $ai = $this->getAutoIncrementedField($fullTable);
-        if (false !== $ai) {
-            $ret[$ai] = null;
-        }
+
+
 
         foreach ($types as $k => $v) {
-            if (false === array_key_exists($k, $ret)) {
 
+            if (
+                $ai === $k ||
+                (true === array_key_exists($k, $nullables) && true === $nullables[$k])
+            ) {
+                $ret[$k] = null;
+            } else {
                 $p = explode("(", $v, 2);
                 $shortType = array_shift($p);
                 $insideParenthesis = "";
@@ -368,6 +365,8 @@ class MysqlWizard
 
                 $ret[$k] = $defaultValue;
             }
+
+
         }
 
         return $ret;
