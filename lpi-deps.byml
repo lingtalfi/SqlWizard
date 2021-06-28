@@ -107,3 +107,8 @@
     - Ling:BeeFramework:1.0.9
     - Ling:JumboExploder:1.0.5
     - Ling:SimplePdoWrapper:1.30.20
+
+1.13.11: 
+    - Ling:Bat:1.330
+    - Ling:JumboExploder:1.0.5
+    - Ling:SimplePdoWrapper:1.30.20

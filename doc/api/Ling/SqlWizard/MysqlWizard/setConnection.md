@@ -56,7 +56,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [MysqlWizard::setConnection](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L117-L121)
+See the source code for method [MysqlWizard::setConnection](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L115-L119)
 
 
 See Also

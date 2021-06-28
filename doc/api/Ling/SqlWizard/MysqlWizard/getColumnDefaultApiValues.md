@@ -35,6 +35,7 @@ not all mysql data types might be handled.
 Those values are based on the mysql data type, using the following rules (in order):
 
 - nullable -> null
+- autoIncrement -> null
 - str -> ""
 - datetime -> (current datetime)
 - date -> (current date)
@@ -73,7 +74,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlWizard::getColumnDefaultApiValues](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L305-L367)
+See the source code for method [MysqlWizard::getColumnDefaultApiValues](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L304-L373)
 
 
 See Also

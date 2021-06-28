@@ -5,8 +5,6 @@ namespace Ling\SqlWizard;
 
 
 use Ling\Bat\PsvTool;
-use Ling\Bat\StringTool;
-use Ling\BeeFramework\Bat\MicroStringTool;
 use Ling\SimplePdoWrapper\Exception\InvalidTableNameException;
 use Ling\SqlWizard\Exception\NoConnectionException;
 use Ling\SqlWizard\Exception\SqlWizardException;
@@ -289,6 +287,7 @@ class MysqlWizard
      * Those values are based on the mysql data type, using the following rules (in order):
      *
      * - nullable -> null
+     * - autoIncrement -> null
      * - str -> ""
      * - datetime -> (current datetime)
      * - date -> (current date)
@@ -305,6 +304,8 @@ class MysqlWizard
     public function getColumnDefaultApiValues($fullTable)
     {
         $ret = [];
+
+
         $types = $this->getColumnDataTypes($fullTable, true);
         $nullables = $this->getColumnNullabilities($fullTable);
         foreach ($nullables as $k => $v) {
@@ -313,6 +314,11 @@ class MysqlWizard
             }
         }
 
+
+        $ai = $this->getAutoIncrementedField($fullTable);
+        if (false !== $ai) {
+            $ret[$ai] = null;
+        }
 
         foreach ($types as $k => $v) {
             if (false === array_key_exists($k, $ret)) {

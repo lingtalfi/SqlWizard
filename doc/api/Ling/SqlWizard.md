@@ -53,7 +53,6 @@ Table of contents
 Dependencies
 ============
 - [Bat](https://github.com/lingtalfi/Bat)
-- [BeeFramework](https://github.com/lingtalfi/BeeFramework)
 - [JumboExploder](https://github.com/lingtalfi/JumboExploder)
 - [SimplePdoWrapper](https://github.com/lingtalfi/SimplePdoWrapper)
 

@@ -48,6 +48,10 @@ Summary
 History Log
 ------------------
 
+- 1.13.11 -- 2021-06-28
+
+    - update MysqlWizard->getColumnDefaultApiValues, autoIncremented fields now have null default value
+  
 - 1.13.10 -- 2021-06-28
 
     - add MysqlWizard->getColumnDefaultApiValues method

@@ -58,7 +58,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlWizard::getTables](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L172-L192)
+See the source code for method [MysqlWizard::getTables](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L170-L190)
 
 
 See Also

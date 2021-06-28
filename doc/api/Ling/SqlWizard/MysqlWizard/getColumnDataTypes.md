@@ -63,7 +63,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlWizard::getColumnDataTypes](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L239-L251)
+See the source code for method [MysqlWizard::getColumnDataTypes](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L237-L249)
 
 
 See Also
