@@ -54,7 +54,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlWizard::getPrimaryKey](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L518-L531)
+See the source code for method [MysqlWizard::getPrimaryKey](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L519-L532)
 
 
 See Also

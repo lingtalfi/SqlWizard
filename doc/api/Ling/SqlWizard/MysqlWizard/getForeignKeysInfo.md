@@ -62,7 +62,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlWizard::getForeignKeysInfo](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L472-L507)
+See the source code for method [MysqlWizard::getForeignKeysInfo](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L473-L508)
 
 
 See Also

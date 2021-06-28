@@ -334,6 +334,7 @@ class MysqlWizard
                     case "int":
                     case "tinyint":
                         $defaultValue = "0";
+                        break;
                     case "decimal":
                         $defaultValue = "0.0";
                         break;
