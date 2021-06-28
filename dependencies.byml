@@ -1,5 +1,7 @@
 dependencies: 
     Ling: 
+        - Bat
+        - BeeFramework
         - JumboExploder
         - SimplePdoWrapper
     

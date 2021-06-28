@@ -16,7 +16,7 @@ Description
 ================
 
 
-public [MysqlWizard::getAutoIncrementedField](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/MysqlWizard/getAutoIncrementedField.md)($table) : false | string
+public [MysqlWizard::getAutoIncrementedField](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/MysqlWizard/getAutoIncrementedField.md)($fullTable) : false | string
 
 
 
@@ -30,7 +30,7 @@ Parameters
 ================
 
 
-- table
+- fullTable
 
     
 
@@ -56,7 +56,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlWizard::getAutoIncrementedField](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L193-L204)
+See the source code for method [MysqlWizard::getAutoIncrementedField](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L204-L215)
 
 
 See Also

@@ -56,7 +56,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlWizard::getDatabases](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L126-L147)
+See the source code for method [MysqlWizard::getDatabases](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L137-L158)
 
 
 See Also

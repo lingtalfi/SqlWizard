@@ -58,7 +58,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlWizard::explodeTable](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L586-L661)
+See the source code for method [MysqlWizard::explodeTable](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L688-L763)
 
 
 See Also

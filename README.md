@@ -1,6 +1,6 @@
 SqlWizard
 =========
-2019-02-04 -> 2021-03-05
+2019-02-04 -> 2021-06-28
 
 
 
@@ -48,6 +48,10 @@ Summary
 History Log
 ------------------
 
+- 1.13.10 -- 2021-06-28
+
+    - add MysqlWizard->getColumnDefaultApiValues method
+  
 - 1.13.9 -- 2021-05-31
 
     - Removing trailing plus in lpi-deps file (to work with Light_PlanetInstaller:2.0.0 api

@@ -4,8 +4,12 @@
 namespace Ling\SqlWizard;
 
 
+use Ling\Bat\PsvTool;
+use Ling\Bat\StringTool;
+use Ling\BeeFramework\Bat\MicroStringTool;
 use Ling\SimplePdoWrapper\Exception\InvalidTableNameException;
 use Ling\SqlWizard\Exception\NoConnectionException;
+use Ling\SqlWizard\Exception\SqlWizardException;
 
 /**
  * The MysqlWizard class is a helper class to work with mysql databases.
@@ -28,6 +32,11 @@ use Ling\SqlWizard\Exception\NoConnectionException;
  *
  * You are responsible for quoting the table name if necessary (with backticks).
  *
+ * That's because we cannot guess if the table (or db) name contains semantic dots, and so we let you do that job.
+ * (for instance, if the database name is "a", and the table name is "a.cor", then if you pass us the string "a.a.cor",
+ * we wouldn't know which part represents the database and which part represents the table).
+ *
+ *
  *
  * Examples:
  *
@@ -37,6 +46,8 @@ use Ling\SqlWizard\Exception\NoConnectionException;
  * - `my_db`.`my_table`
  * - `my_db`.my_table
  * - my_db.`my_table`
+ *
+ *
  *
  *
  *
@@ -71,7 +82,7 @@ class MysqlWizard
 
 
     /**
-     * This property holds the connection (php's \PDO instance) to the mysql database.
+     * This property holds the connection (php's PDO instance) to the mysql database.
      *
      * Note: the error mode will always be set to exception.
      * @var \PDO
@@ -185,15 +196,15 @@ class MysqlWizard
      * Returns the name of the auto-incremented field, or false if there is none.
      *
      *
-     * @param string $table , the fullTable name (see class description for more info).
+     * @param string $fullTable , the fullTable name (see class description for more info).
      * @return false|string
      * @throws NoConnectionException
      * @throws \PDOException
      */
-    public function getAutoIncrementedField($table)
+    public function getAutoIncrementedField($fullTable)
     {
 
-        $q = "show columns from $table where extra='auto_increment'";
+        $q = "show columns from $fullTable where extra='auto_increment'";
         if (false !== ($stmt = $this->query($q))) {
             $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             if (array_key_exists(0, $rows)) {
@@ -212,7 +223,7 @@ class MysqlWizard
      *
      *
      *
-     * @param $table , the fullTable name (see class description for more info).
+     * @param $fullTable , the fullTable name (see class description for more info).
      * @param bool $precision , whether to include the part with the parenthesis if any.
      *              Defaults to false, which means that the part with the parenthesis is stripped out by default.
      *              For instance,
@@ -225,10 +236,10 @@ class MysqlWizard
      * @throws NoConnectionException
      * @throws \PDOException
      */
-    public function getColumnDataTypes($table, $precision = false)
+    public function getColumnDataTypes($fullTable, $precision = false)
     {
         $types = [];
-        $info = $this->query("SHOW COLUMNS FROM $table")->fetchAll(\PDO::FETCH_ASSOC);
+        $info = $this->query("SHOW COLUMNS FROM $fullTable")->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($info as $_info) {
             $type = $_info['Type'];
             if (false === $precision) {
@@ -247,15 +258,15 @@ class MysqlWizard
      * The default value for the column is NULL if the column has an explicit default of NULL, or if the column definition includes no DEFAULT clause.
      *
      *
-     * @param $table , the fullTable name (see class description for more info).
+     * @param $fullTable , the fullTable name (see class description for more info).
      * @return array
      * @throws NoConnectionException
      * @throws \PDOException
      */
-    public function getColumnDefaultValues($table)
+    public function getColumnDefaultValues($fullTable)
     {
         $defaults = [];
-        $info = $this->query("SHOW COLUMNS FROM $table")->fetchAll(\PDO::FETCH_ASSOC);
+        $info = $this->query("SHOW COLUMNS FROM $fullTable")->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($info as $_info) {
             $defaults[$_info['Field']] = $_info['Default'];
         }
@@ -264,19 +275,112 @@ class MysqlWizard
 
 
     /**
+     * Returns some default "api" values for the given $table.
+     *
+     *
+     *
+     * By "api", I mean that the returned values are designed to be used as
+     * default values in an orm system for instance.
+     *
+     * This is based on my own experience and designed for my own needs, which means
+     * not all mysql data types might be handled.
+     *
+     *
+     * Those values are based on the mysql data type, using the following rules (in order):
+     *
+     * - nullable -> null
+     * - str -> ""
+     * - datetime -> (current datetime)
+     * - date -> (current date)
+     * - int types -> "0"
+     * - decimal types -> "0.0" (this could be changed in the future if required)
+     * - enum -> the first value of the enum
+     *
+     *
+     *
+     * @param $fullTable , the fullTable name (see class description for more info).
+     * @return array
+     * @throws \Exception
+     */
+    public function getColumnDefaultApiValues($fullTable)
+    {
+        $ret = [];
+        $types = $this->getColumnDataTypes($fullTable, true);
+        $nullables = $this->getColumnNullabilities($fullTable);
+        foreach ($nullables as $k => $v) {
+            if (true === $v) {
+                $ret[$k] = null;
+            }
+        }
+
+
+        foreach ($types as $k => $v) {
+            if (false === array_key_exists($k, $ret)) {
+
+                $p = explode("(", $v, 2);
+                $shortType = array_shift($p);
+                $insideParenthesis = "";
+                if ($p) {
+                    $insideParenthesis = rtrim(array_shift($p), ')');
+                }
+
+                switch ($shortType) {
+                    case "int":
+                    case "tinyint":
+                        $defaultValue = "0";
+                    case "decimal":
+                        $defaultValue = "0.0";
+                        break;
+                    case "enum":
+
+                        /**
+                         * The default value of an enum column should be (if not null),
+                         * the first of the listed values.
+                         *
+                         * https://dev.mysql.com/doc/refman/8.0/en/enum.html
+                         * (section "Empty or NULL Enumeration Values")
+                         *
+                         */
+                        $values = PsvTool::explodeProtected($insideParenthesis);
+                        $defaultValue = array_shift($values);
+                        break;
+                    case "char":
+                    case "varchar":
+                    case "text":
+                        $defaultValue = "";
+                        break;
+                    case "datetime":
+                        $defaultValue = date("Y-m-d H:i:s");
+                        break;
+                    case "date":
+                        $defaultValue = date("Y-m-d");
+                        break;
+                    default:
+                        throw new SqlWizardException("Unrecognized mysql type: $shortType.");
+                }
+
+                $ret[$k] = $defaultValue;
+            }
+        }
+
+        return $ret;
+    }
+
+
+    /**
      *
      * Returns the list of column names for the given $table.
      *
      *
-     * @param $table , the fullTable name (see class description for more info).
+     * @param $fullTable , the fullTable name (see class description for more info).
      * @return array
      * @throws NoConnectionException
      * @throws \PDOException
      */
-    public function getColumnNames($table)
+    public function getColumnNames($fullTable)
     {
         $defaults = [];
-        $info = $this->query("SHOW COLUMNS FROM $table")->fetchAll(\PDO::FETCH_ASSOC);
+        $info = $this->query("SHOW COLUMNS FROM $fullTable")->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($info as $_info) {
             $defaults[] = $_info['Field'];
         }
@@ -291,15 +395,15 @@ class MysqlWizard
      *          The value is true if values can be stored in the column, false if not.
      *
      *
-     * @param $table , the fullTable name (see class description for more info).
+     * @param $fullTable , the fullTable name (see class description for more info).
      * @return array
      * @throws NoConnectionException
      * @throws \PDOException
      */
-    public function getColumnNullabilities($table)
+    public function getColumnNullabilities($fullTable)
     {
         $defaults = [];
-        $info = $this->query("SHOW COLUMNS FROM $table")->fetchAll(\PDO::FETCH_ASSOC);
+        $info = $this->query("SHOW COLUMNS FROM $fullTable")->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($info as $_info) {
             $defaults[$_info['Field']] = ('YES' === $_info['Null']) ? true : false;
         }
@@ -313,15 +417,15 @@ class MysqlWizard
      * With indexes: an array of column names ordered by ascending index sequence.
      *
      *
-     * @param $table , the fullTable name (see class description for more info).
+     * @param $fullTable , the fullTable name (see class description for more info).
      * @return array
      * @throws NoConnectionException
      * @throws \PDOException
      */
-    public function getUniqueIndexes($table)
+    public function getUniqueIndexes($fullTable)
     {
         $ret = [];
-        $info = $this->query("SHOW INDEX FROM $table")->fetchAll();
+        $info = $this->query("SHOW INDEX FROM $fullTable")->fetchAll();
         if (false !== $info) {
             $indexes = [];
             foreach ($info as $_info) {
@@ -352,16 +456,16 @@ class MysqlWizard
      *
      *
      *
+     * @param $fullTable , the fullTable name (see class description for more info).
      * @return array
-     * @param $table , the fullTable name (see class description for more info).
      * @throws NoConnectionException
      * @throws \PDOException
      * @throws InvalidTableNameException
      *
      */
-    public function getForeignKeysInfo($table)
+    public function getForeignKeysInfo($fullTable)
     {
-        list($db, $_table) = $this->explodeTable($table);
+        list($db, $_table) = $this->explodeTable($fullTable);
 
         $db = addcslashes($db, "'");
         $_table = addcslashes($_table, "'");
@@ -401,13 +505,13 @@ and CONSTRAINT_TYPE = 'FOREIGN KEY'
      * Returns the primary key of the given $table.
      *
      *
-     * @param $table , the fullTable name (see class description for more info).
+     * @param $fullTable , the fullTable name (see class description for more info).
      * @return array|false. False is returned if there is no primary key defined on this table.
      * @throws NoConnectionException
      */
-    public function getPrimaryKey($table)
+    public function getPrimaryKey($fullTable)
     {
-        $rows = $this->query("SHOW KEYS FROM $table WHERE Key_name = 'PRIMARY'")->fetchAll(\PDO::FETCH_ASSOC);
+        $rows = $this->query("SHOW KEYS FROM $fullTable WHERE Key_name = 'PRIMARY'")->fetchAll(\PDO::FETCH_ASSOC);
         $ret = [];
         if (false !== $rows) {
             foreach ($rows as $info) {
@@ -427,15 +531,15 @@ and CONSTRAINT_TYPE = 'FOREIGN KEY'
      * See the class description for more details about ric.
      *
      *
-     * @param $table , the fullTable name (see class description for more info).
+     * @param $fullTable , the fullTable name (see class description for more info).
      * @return array|false
      * @throws NoConnectionException
      */
-    public function getRic($table)
+    public function getRic($fullTable)
     {
-        $ric = $this->getPrimaryKey($table);
+        $ric = $this->getPrimaryKey($fullTable);
         if (false === $ric) {
-            $columnNames = $this->getColumnNames($table);
+            $columnNames = $this->getColumnNames($fullTable);
             $ric = $columnNames;
         }
         return $ric;
@@ -504,8 +608,6 @@ AND `REFERENCED_COLUMN_NAME` LIKE '$col'
         return $ret;
 
     }
-
-
 
 
 
