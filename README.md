@@ -48,6 +48,10 @@ Summary
 History Log
 ------------------
 
+- 1.13.13 -- 2021-06-28
+
+    - fix MysqlStructureReader returning random db names
+  
 - 1.13.12 -- 2021-06-28
 
     - fix MysqlWizard->getColumnDefaultApiValues functional typo

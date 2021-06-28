@@ -67,10 +67,17 @@ class MysqlStructureReader
         $strictRic = RicHelper::getRicByPkAndColumnsAndUniqueIndexes($readerArray['pk'], $readerArray['columnNames'], $readerArray['uind'], true);
 
         $db = $readerArray['db'];
+
+
         if (null === $db) {
             $db = $defaultDb;
             if (null === $db) {
-                $db = $util->getDatabase();
+                /**
+                 * Note that the code below returns random result (example: jindemo, employees, ...).
+                 * Therefore I prefer to set it to a fixed value of "undefined", because it's easier to debug.
+                 */
+//                $db = $util->getDatabase();
+                $db = "undefined";
             }
         }
 
@@ -242,6 +249,7 @@ class MysqlStructureReader
 
 
                     list($db, $table) = $this->getDatabaseAndTableFromLine($firstLine);
+
 
 
                     //--------------------------------------------
