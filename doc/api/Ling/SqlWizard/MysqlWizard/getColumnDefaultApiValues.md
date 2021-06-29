@@ -16,7 +16,7 @@ Description
 ================
 
 
-public [MysqlWizard::getColumnDefaultApiValues](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/MysqlWizard/getColumnDefaultApiValues.md)($fullTable) : array
+public [MysqlWizard::getColumnDefaultApiValues](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/MysqlWizard/getColumnDefaultApiValues.md)(string $fullTable, ?array $options = []) : array
 
 
 
@@ -45,12 +45,22 @@ Those values are based on the mysql data type, using the following rules (in ord
 
 
 
+Available options are:
+
+- omitAutoIncrement: bool=true. If true, the autoIncremented field (if exist) will not be in the returned array.
+
+
+
 
 Parameters
 ================
 
 
 - fullTable
+
+    
+
+- options
 
     
 
@@ -74,7 +84,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlWizard::getColumnDefaultApiValues](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L304-L373)
+See the source code for method [MysqlWizard::getColumnDefaultApiValues](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L313-L382)
 
 
 See Also

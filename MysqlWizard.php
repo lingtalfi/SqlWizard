@@ -297,25 +297,34 @@ class MysqlWizard
      *
      *
      *
-     * @param $fullTable , the fullTable name (see class description for more info).
+     * Available options are:
+     *
+     * - omitAutoIncrement: bool=true. If true, the autoIncremented field (if exist) will not be in the returned array.
+     *
+     *
+     *
+     *
+     *
+     * @param string $fullTable , the fullTable name (see class description for more info).
+     * @param array $options
      * @return array
      * @throws \Exception
      */
-    public function getColumnDefaultApiValues($fullTable)
+    public function getColumnDefaultApiValues(string $fullTable, array $options = [])
     {
         $ret = [];
 
+        $omitAutoIncrement = $options['omitAutoIncrement'] ?? true;
 
         $types = $this->getColumnDataTypes($fullTable, true);
         $nullables = $this->getColumnNullabilities($fullTable);
         $ai = $this->getAutoIncrementedField($fullTable);
 
 
-
         foreach ($types as $k => $v) {
 
             if (
-                $ai === $k ||
+                ($ai === $k && false === $omitAutoIncrement) ||
                 (true === array_key_exists($k, $nullables) && true === $nullables[$k])
             ) {
                 $ret[$k] = null;

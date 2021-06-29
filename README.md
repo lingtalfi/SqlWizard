@@ -1,6 +1,6 @@
 SqlWizard
 =========
-2019-02-04 -> 2021-06-28
+2019-02-04 -> 2021-06-29
 
 
 
@@ -48,6 +48,10 @@ Summary
 History Log
 ------------------
 
+- 1.13.15 -- 2021-06-29
+
+    - update MysqlWizard->getColumnDefaultApiValues, add options now autoIncremented field is not returned by default
+  
 - 1.13.14 -- 2021-06-28
 
     - update MysqlWizard->getColumnDefaultApiValues now returns columns in natural order
