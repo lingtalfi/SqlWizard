@@ -323,12 +323,20 @@ class MysqlWizard
 
         foreach ($types as $k => $v) {
 
+
+            if ($ai === $k && true === $omitAutoIncrement) {
+                continue;
+            }
+
+
             if (
-                ($ai === $k && false === $omitAutoIncrement) ||
+                ($ai === $k) ||
                 (true === array_key_exists($k, $nullables) && true === $nullables[$k])
             ) {
                 $ret[$k] = null;
             } else {
+
+
                 $p = explode("(", $v, 2);
                 $shortType = array_shift($p);
                 $insideParenthesis = "";

@@ -48,6 +48,10 @@ Summary
 History Log
 ------------------
 
+- 1.13.16 -- 2021-06-29
+
+    - fix MysqlWizard->getColumnDefaultApiValues functional typo
+  
 - 1.13.15 -- 2021-06-29
 
     - update MysqlWizard->getColumnDefaultApiValues, add options now autoIncremented field is not returned by default
