@@ -299,7 +299,7 @@ class MysqlWizard
      *
      * Available options are:
      *
-     * - omitAutoIncrement: bool=true. If true, the autoIncremented field (if exist) will not be in the returned array.
+     * - omitAutoIncrement: bool=false. If true, the autoIncremented field (if exist) will not be in the returned array.
      *
      *
      *
@@ -314,7 +314,7 @@ class MysqlWizard
     {
         $ret = [];
 
-        $omitAutoIncrement = $options['omitAutoIncrement'] ?? true;
+        $omitAutoIncrement = $options['omitAutoIncrement'] ?? false;
 
         $types = $this->getColumnDataTypes($fullTable, true);
         $nullables = $this->getColumnNullabilities($fullTable);

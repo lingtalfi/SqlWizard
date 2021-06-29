@@ -47,7 +47,7 @@ Those values are based on the mysql data type, using the following rules (in ord
 
 Available options are:
 
-- omitAutoIncrement: bool=true. If true, the autoIncremented field (if exist) will not be in the returned array.
+- omitAutoIncrement: bool=false. If true, the autoIncremented field (if exist) will not be in the returned array.
 
 
 
