@@ -48,6 +48,10 @@ Summary
 History Log
 ------------------
 
+- 1.13.19 -- 2021-07-02
+
+    - add MysqlWizard->count method
+  
 - 1.13.18 -- 2021-07-02
 
     - add FullTableHelper class

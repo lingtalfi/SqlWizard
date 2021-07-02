@@ -192,6 +192,23 @@ class MysqlWizard
 
 
     /**
+     * Returns the number of rows in the given table.
+     *
+     *
+     * @param string $fullTable
+     * @return int
+     * @throws \Exception
+     */
+    public function count(string $fullTable): int
+    {
+        $query = $this->query("select count(*) as count from $fullTable");
+        $row = $query->fetch(\PDO::FETCH_ASSOC);
+        return (int)$row['count'];
+
+    }
+
+
+    /**
      * Returns the name of the auto-incremented field, or false if there is none.
      *
      *
