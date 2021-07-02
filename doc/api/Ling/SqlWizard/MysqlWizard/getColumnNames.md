@@ -56,7 +56,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlWizard::getColumnNames](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L403-L411)
+See the source code for method [MysqlWizard::getColumnNames](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L404-L412)
 
 
 See Also

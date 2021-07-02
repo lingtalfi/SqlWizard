@@ -4,7 +4,7 @@
 
 The MysqlWizard class
 ================
-2019-07-23 --> 2021-06-29
+2019-07-23 --> 2021-07-02
 
 
 
@@ -99,7 +99,7 @@ class <span class="pl-k">MysqlWizard</span>  {
     - protected [getCurrentDatabase](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/MysqlWizard/getCurrentDatabase.md)() : string
     - protected [query](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/MysqlWizard/query.md)($query) : [PDOStatement](https://www.php.net/manual/en/class.pdostatement.php)
     - protected [exec](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/MysqlWizard/exec.md)($query) : mixed
-    - private [explodeTable](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/MysqlWizard/explodeTable.md)($fullTable) : array
+    - private [explodeTable](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/MysqlWizard/explodeTable.md)(string $fullTable) : array
 
 }
 
@@ -155,4 +155,4 @@ See the source code of [Ling\SqlWizard\MysqlWizard](https://github.com/lingtalfi
 
 SeeAlso
 ==============
-Previous class: [SqlWizardException](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Exception/SqlWizardException.md)<br>Next class: [MysqlSerializeTool](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Tool/MysqlSerializeTool.md)<br>
+Previous class: [SqlWizardException](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Exception/SqlWizardException.md)<br>Next class: [FullTableHelper](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/Tool/FullTableHelper.md)<br>

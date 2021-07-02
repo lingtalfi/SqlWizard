@@ -8,6 +8,7 @@ use Ling\Bat\PsvTool;
 use Ling\SimplePdoWrapper\Exception\InvalidTableNameException;
 use Ling\SqlWizard\Exception\NoConnectionException;
 use Ling\SqlWizard\Exception\SqlWizardException;
+use Ling\SqlWizard\Tool\FullTableHelper;
 
 /**
  * The MysqlWizard class is a helper class to work with mysql databases.
@@ -708,81 +709,13 @@ AND `REFERENCED_COLUMN_NAME` LIKE '$col'
      * @throws InvalidTableNameException
      * @throws NoConnectionException
      */
-    private function explodeTable($fullTable)
+    private function explodeTable(string $fullTable)
     {
-
-
-        $invalid = false;
-
-        $count = substr_count($fullTable, '`');
-        if (4 === $count) { // `my_db`.`my_table`
-            $p = explode('`.`', $fullTable);
-            if (2 === count($p)) {
-                $db = trim($p[0], '`');
-                $table = trim($p[1], '`');
-            } else {
-                $invalid = true;
-            }
+        $arr = FullTableHelper::explodeTable($fullTable);
+        if (null === $arr[0]) {
+            $arr[0] = $this->getCurrentDatabase();
         }
-        // one of:
-        // - `my_db`.my_table
-        // - my_db.`my_table`
-        // - `my_table`
-        elseif (2 === $count) {
-            if (
-                '`' === substr($fullTable, 0, 1) &&
-                '`' === substr($fullTable, -1)
-            ) {
-                $db = $this->getCurrentDatabase();
-                $table = trim($fullTable, '`');
-            } elseif (false !== strpos($fullTable, '`.')) {
-                $p = explode('`.', $fullTable);
-                if (2 === count($p)) {
-                    $db = trim($p[0], '`');
-                    $table = $p[1];
-                } else {
-                    $invalid = true;
-                }
-            } elseif (false !== strpos($fullTable, '.`')) {
-                $p = explode('.`', $fullTable);
-                if (2 === count($p)) {
-                    $db = $p[0];
-                    $table = trim($p[1], '`');
-                } else {
-                    $invalid = true;
-                }
-            } else {
-                $invalid = true;
-            }
-        }
-        // one of:
-        // - my_db.my_table
-        // - my_table
-        elseif (0 === $count) {
-            $p = explode('.', $fullTable);
-            $n = count($p);
-            if (2 === $n) {
-                $db = $p[0];
-                $table = $p[1];
-            } elseif (1 === $n) {
-                $db = $this->getCurrentDatabase();
-                $table = $p[0];
-            } else {
-                $invalid = true;
-            }
-        } else {
-            $invalid = true;
-        }
-
-        if (true === $invalid) {
-            throw new InvalidTableNameException("Invalid table name $fullTable. See documentation for more info.");
-        }
-
-
-        return [
-            $db,
-            $table,
-        ];
+        return $arr;
     }
 
 }

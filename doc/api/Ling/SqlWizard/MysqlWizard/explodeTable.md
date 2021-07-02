@@ -16,7 +16,7 @@ Description
 ================
 
 
-private [MysqlWizard::explodeTable](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/MysqlWizard/explodeTable.md)($fullTable) : array
+private [MysqlWizard::explodeTable](https://github.com/lingtalfi/SqlWizard/blob/master/doc/api/Ling/SqlWizard/MysqlWizard/explodeTable.md)(string $fullTable) : array
 
 
 
@@ -58,7 +58,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlWizard::explodeTable](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L711-L786)
+See the source code for method [MysqlWizard::explodeTable](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L712-L719)
 
 
 See Also

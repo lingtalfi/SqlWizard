@@ -1,6 +1,6 @@
 SqlWizard
 =========
-2019-02-04 -> 2021-06-29
+2019-02-04 -> 2021-07-02
 
 
 
@@ -48,6 +48,10 @@ Summary
 History Log
 ------------------
 
+- 1.13.18 -- 2021-07-02
+
+    - add FullTableHelper class
+  
 - 1.13.17 -- 2021-06-29
 
     - update MysqlWizard->getColumnDefaultApiValues now includes autoIncremented field by default (changed again)

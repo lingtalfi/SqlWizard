@@ -58,7 +58,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlWizard::getUniqueIndexes](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L448-L468)
+See the source code for method [MysqlWizard::getUniqueIndexes](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L449-L469)
 
 
 See Also

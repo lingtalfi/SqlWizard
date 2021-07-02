@@ -59,7 +59,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlWizard::getColumnNullabilities](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L426-L434)
+See the source code for method [MysqlWizard::getColumnNullabilities](https://github.com/lingtalfi/SqlWizard/blob/master/MysqlWizard.php#L427-L435)
 
 
 See Also
