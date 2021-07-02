@@ -62,6 +62,9 @@ class MysqlStructureReader
         $table = $readerArray['table'];
         $aik = $readerArray['ai'] ?? false;
 
+        if (null === $readerArray['pk']) {
+            $readerArray['pk'] = [];
+        }
 
         $ric = RicHelper::getRicByPkAndColumnsAndUniqueIndexes($readerArray['pk'], $readerArray['columnNames'], $readerArray['uind'], false);
         $strictRic = RicHelper::getRicByPkAndColumnsAndUniqueIndexes($readerArray['pk'], $readerArray['columnNames'], $readerArray['uind'], true);
@@ -249,7 +252,6 @@ class MysqlStructureReader
 
 
                     list($db, $table) = $this->getDatabaseAndTableFromLine($firstLine);
-
 
 
                     //--------------------------------------------
