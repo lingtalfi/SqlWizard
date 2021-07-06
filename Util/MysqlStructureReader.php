@@ -209,7 +209,7 @@ class MysqlStructureReader
 
         $tables = [];
 
-        if (preg_match_all('!CREATE TABLE (.*);$!msU', $content, $matches)) {
+        if (preg_match_all('!CREATE\s+TABLE\s+(.*);$!msU', $content, $matches)) {
             foreach ($matches[0] as $match) {
 
 
@@ -236,6 +236,7 @@ class MysqlStructureReader
                     ]);
 
 
+
                     $db = null;
                     $table = null;
                     $primaryKey = null;
@@ -254,12 +255,17 @@ class MysqlStructureReader
                     list($db, $table) = $this->getDatabaseAndTableFromLine($firstLine);
 
 
+
+
+
                     //--------------------------------------------
                     // create_definition
                     //--------------------------------------------
                     foreach ($operations as $op) {
                         if ('`' === substr($op, 0, 1)) {
                             $colInfo = $this->extractRegularColumnInfo($op);
+
+
                             if (false !== $colInfo) {
 
                                 $columnNames[] = $colInfo[0];
@@ -346,7 +352,6 @@ class MysqlStructureReader
                         }
                     }
 
-
                     //--------------------------------------------
                     // table options
                     //--------------------------------------------
@@ -421,7 +426,7 @@ class MysqlStructureReader
         $content = SqlWizardGeneralTool::removeDoubleDashComments($content);
         $statements = [];
 
-        if (preg_match_all('!CREATE TABLE (.*);$!msU', $content, $matches)) {
+        if (preg_match_all('!CREATE\s+TABLE\s+(.*);$!msU', $content, $matches)) {
             foreach ($matches[0] as $match) {
                 if (preg_match('!([^(]*)\((.*)\)(.*)!s', $match, $blocks)) {
                     $firstLine = $blocks[1];
@@ -577,19 +582,27 @@ class MysqlStructureReader
     {
 
 
-        if (preg_match('!^`([^`]*)` ([^ ]*)!', $line, $match)) {
+        if (preg_match('!^`([^`]*)`\s+(.*)!s', $line, $match)) {
             $name = $match[1];
-            $type = strtolower($match[2]);
+            $restOfLine = strtolower($match[2]);
             $isNull = true;
             $isAi = false;
 
-            if (false !== strpos($line, " NOT NULL")) {
+
+            if(true === str_contains($restOfLine, "not null")){
+                $restOfLine = str_replace("not null", "", $restOfLine);
                 $isNull = false;
             }
-
-            if (false !== strpos($line, " AUTO_INCREMENT")) {
+            if(true === str_contains($restOfLine, "null")){
+                $restOfLine = str_replace("null", "", $restOfLine);
+            }
+            if(true === str_contains($restOfLine, "auto_increment")){
+                $restOfLine = str_replace("auto_increment", "", $restOfLine);
                 $isAi = true;
             }
+            $restOfLine = trim($restOfLine);
+            $type = $restOfLine;
+
 
             return [
                 $name,
@@ -622,10 +635,10 @@ class MysqlStructureReader
         $onDelete = null;
         $onUpdate = null;
 
-        if (preg_match('!ON DELETE\s(RESTRICT|CASCADE|SET NULL|NO ACTION|SET DEFAULT)!i', $s, $match)) {
+        if (preg_match('!ON DELETE\s+(RESTRICT|CASCADE|SET NULL|NO ACTION|SET DEFAULT)!i', $s, $match)) {
             $onDelete = $match[1];
         }
-        if (preg_match('!ON UPDATE\s(RESTRICT|CASCADE|SET NULL|NO ACTION|SET DEFAULT)!i', $s, $match)) {
+        if (preg_match('!ON UPDATE\s+(RESTRICT|CASCADE|SET NULL|NO ACTION|SET DEFAULT)!i', $s, $match)) {
             $onUpdate = $match[1];
         }
 

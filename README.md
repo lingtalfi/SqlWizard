@@ -1,6 +1,6 @@
 SqlWizard
 =========
-2019-02-04 -> 2021-07-02
+2019-02-04 -> 2021-07-06
 
 
 
@@ -48,6 +48,10 @@ Summary
 History Log
 ------------------
 
+- 1.13.21 -- 2021-07-06
+
+    - fix MysqlStructureReader->readContent, update regexes so that it handles whitespaces properly
+  
 - 1.13.20 -- 2021-07-02
 
     - fix MysqlStructureReader->readerArrayToTableInfo not handling when pk is null
